@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.company.app.common.codes.GenderTypes;
 import com.company.app.common.codes.UserTypes;
 import com.company.app.common.exceptions.FormValueRequiredExcpetion;
 import com.company.app.common.exceptions.UserTypeException;
@@ -17,6 +18,7 @@ import com.company.app.users.model.dto.AddSitterTypeRequestDto;
 import com.company.app.users.model.dto.ChangePasswordRequestDto;
 import com.company.app.users.model.dto.ChildInfoDto;
 import com.company.app.users.model.dto.ChildInfoRequestDto;
+import com.company.app.users.model.dto.UpdateChildInfoRequestDto;
 import com.company.app.users.model.dto.UpdateMyInfoRequestDto;
 import com.company.app.users.model.dto.UserInfoDto;
 import com.company.app.users.repository.UserModelRepository;
@@ -85,20 +87,36 @@ public class MyInfoService extends ApiBaseService {
     }
 
     // 아이 신규 등록
-    public List<ChildInfoDto> putChildInfo(ChildInfoRequestDto form){
+    public List<ChildInfoDto> putChildInfo(ChildInfoRequestDto form) {
         UserModel user = getCurrentUser();
-        if(!user.getUserType().contains(UserTypes.PARENT)){
+        if (!user.getUserType().contains(UserTypes.PARENT)) {
             throw new UserTypeException("부모로 등록되지 않았습니다");
         }
-        List<ChildInfoModel> childInfoList= user.getChildInfoList();
+        List<ChildInfoModel> childInfoList = user.getChildInfoList();
         childInfoList.add(new ChildInfoModel(form));
         user.setChildInfoList(
-            childInfoList
-        );
+                childInfoList);
+
+        return userModelRepository.save(user)
+                .getChildInfoList()
+                .stream().map(ChildInfoDto::new).collect(Collectors.toList());
+    }
+
+    // 아이 업데이트
+    public List<ChildInfoDto> updateChildInfo(UpdateChildInfoRequestDto form) {
+        UserModel user = getCurrentUser();
+        user.getChildInfoList().stream()
+                .forEach(item -> {
+                    if (item.getChildNo().equals(form.getChildNo())) {
+                        item.setBirthdate(form.getBirthDate());
+                        item.setGender(GenderTypes.valueOf(form.getGender()));                       
+                    }
+
+                });
         
-       return userModelRepository.save(user)
-                                 .getChildInfoList()
-                                 .stream().map(ChildInfoDto::new).collect(Collectors.toList());
+        return userModelRepository.save(user)
+                .getChildInfoList()
+                .stream().map(ChildInfoDto::new).collect(Collectors.toList());
     }
 
     // 4. 부모로도 활동하기

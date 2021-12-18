@@ -11,12 +11,28 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     
 	@Value("${secret.password}")
     private String passwordSecret;
+    @Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**").allowedOriginPatterns(CorsConfiguration.ALL)
+                                          .allowedMethods(CorsConfiguration.ALL)
+                                          .allowedHeaders(CorsConfiguration.ALL)
+                                          .allowCredentials(true)
+                                          .maxAge(50000);
+			}
+		};
+	}
 
     @Bean
     public PasswordEncoder passwordEncoder() {
