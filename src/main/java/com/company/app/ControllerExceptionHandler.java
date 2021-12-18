@@ -10,7 +10,6 @@ import com.company.app.common.exceptions.FormValueRequiredExcpetion;
 import com.company.app.common.exceptions.UserAuthException;
 import com.company.app.common.exceptions.UserTokenException;
 import com.company.app.common.exceptions.UserTypeException;
-import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.ObjectError;

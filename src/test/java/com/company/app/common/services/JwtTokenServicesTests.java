@@ -47,8 +47,8 @@ public class JwtTokenServicesTests {
 
     private UserToken rightToken(){
         return UserToken.builder()
-                        .userId(1L)
-                        .value("aaa")
+                        .userId("abcd")
+                        .token("aaa")
                         .build();
     }
 
@@ -108,28 +108,5 @@ public class JwtTokenServicesTests {
         assertThrows(UserTokenException.class, ()->jwtTokenServices.getUserModelFromToken(token3));
     
     
-    }
-
-    @DisplayName("실패: getUserModelFromToken - 에러")
-    @Test
-    void 테스트_실패2_getUserModelFromToken() throws Exception{
-        final String token = "aaa";
-        final String email ="email@email.com";
-
-        final String wrongEmail ="email2@email.com";
-        final String notExistInDbToken = "xxxx";
-
-        final UserModel user = rightUser();
-        // DB에 존재하지 않는 user
-        doReturn(wrongEmail).when(jwtTokenUtil).getUsernameFromToken(notExistInDbToken);
-        doThrow(new UserTokenException("a")).when(userModelRepository).findByEmail(wrongEmail);
-        assertThrows(UserTokenException.class, ()->jwtTokenServices.getUserModelFromToken(notExistInDbToken));
-        
-        // DB에 존재하지 않는 토큰
-        doReturn(email).when(jwtTokenUtil).getUsernameFromToken(token);
-        doReturn(Optional.of(user)).when(userModelRepository).findByEmail(email);
-        doThrow(new UserTokenException("a")).when(userTokenRepository).findByUserId(user.getMemberNo());
-        assertThrows(UserTokenException.class, ()->jwtTokenServices.getUserModelFromToken(token));
-        
     }
 }

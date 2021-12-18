@@ -25,7 +25,6 @@ import com.company.app.users.repository.UserTokenRepository;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import lombok.RequiredArgsConstructor;
 
@@ -49,13 +48,13 @@ public class UsersServiceImp implements UsersService {
                 throw new FormValueRequiredExcpetion("아이 정보를 입력해주셔야 합니다.");
             }
             // if (!StringUtils.hasText(form.getRequestInfo())) {
-            //     throw new FormValueRequiredExcpetion("신청내용을 입력해주셔야 합니다.");
+            // throw new FormValueRequiredExcpetion("신청내용을 입력해주셔야 합니다.");
             // }
         }
 
-        //  시터회원일 경우 케어 가능한 연령 범위, 자기소개 확인
+        // 시터회원일 경우 케어 가능한 연령 범위, 자기소개 확인
         if (UserTypes.SITTER == userType) {
-            
+
             if (form.getMinCareAge() < 0) {
                 throw new FormValueRequiredExcpetion("minCareAge는 0보다 크게 입력해주셔야 합니다.");
             }
@@ -86,20 +85,18 @@ public class UsersServiceImp implements UsersService {
                     .userId(form.getUserId())
                     .password(passwordEncoder.encode(form.getPassword()))
                     .userType(userTypes).build();
-            
+
             if (UserTypes.PARENT.equals(userType)) {
                 newUser.setChildInfoList(
-                    form.getKidsInfo().stream().map(ChildInfoModel::new).collect(Collectors.toList())
-                );
+                        form.getKidsInfo().stream().map(ChildInfoModel::new).collect(Collectors.toList()));
 
             } else {
                 newUser.setSitterDetail(
-                    SitterDetailModel.builder()
-                                     .minCareAge(form.getMinCareAge())
-                                     .maxCareAge(form.getMaxCareAge())
-                                     .introduce(form.getIntroduce())
-                                     .build()
-                );
+                        SitterDetailModel.builder()
+                                .minCareAge(form.getMinCareAge())
+                                .maxCareAge(form.getMaxCareAge())
+                                .introduce(form.getIntroduce())
+                                .build());
             }
             newUser = userModelRepository.save(newUser);
 
@@ -115,22 +112,23 @@ public class UsersServiceImp implements UsersService {
     @Override
     public LoginResponseDto login(LoginRequestDto form) {
 
-        UserModel user = userModelRepository.findByEmail(form.getEmail());
+        UserModel user = userModelRepository.findByUserId(form.getUserId());
         if (user == null) {
-            throw new UserAuthException("아이디와 비밀번호를 확인해주세요");
+            throw new UserAuthException("아이디를 확인해주세요");
         }
         if (!passwordEncoder.matches(form.getPassword(), user.getPassword())) {
-            throw new UserAuthException("아이디와 비밀번호를 확인해주세요");
+            throw new UserAuthException("비밀번호를 확인해주세요");
         }
-        UserToken token = userTokenRepository.findByUserId(user.getMemberNo()).orElse(null);
-        if (token == null) {
-            token = new UserToken();
-            token.setUserId(user.getMemberNo());
-        }
+        String token = jwtTokenUtil.generateToken(user.getUserId());
+        userTokenRepository.save(
+            UserToken.builder()
+                     .userId(user.getUserId())
+                     .token(token).build()
+        );
+                        
+        // operation.set(tokenKey, token);
 
-        token.setValue(jwtTokenUtil.generateToken(user.getEmail()));
-        userTokenRepository.save(token);
-        return new LoginResponseDto(token.getValue());
+        return new LoginResponseDto(token);
 
     }
 

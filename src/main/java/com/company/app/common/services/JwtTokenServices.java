@@ -44,11 +44,10 @@ public class JwtTokenServices {
         UserModel user = null;
         if (jwtToken != null) {
             try {
-                String email = jwtTokenUtil.getUsernameFromToken(jwtToken);
-                user = userModelRepository.findByEmail(email);
-                if(user == null) throw new UserTokenException(USER_TOKEN_EXCEPTION_MSG);
-                UserToken savedToken = userTokenRepository.findByUserId(user.getMemberNo()).orElseThrow(()-> new UserTokenException(USER_TOKEN_EXCEPTION_MSG));
-                if(!jwtToken.equals(savedToken.getValue())){
+                String userId = jwtTokenUtil.getUsernameFromToken(jwtToken);
+                UserToken savedToken = userTokenRepository.findByUserId(userId);
+                if(savedToken == null) throw new UserTokenException(USER_TOKEN_EXCEPTION_MSG);
+                if(!jwtToken.equals(savedToken.getToken())){
                     throw new UserTokenException(USER_TOKEN_EXCEPTION_MSG);
                 }
             } catch (IllegalArgumentException | MalformedJwtException e) {

@@ -1,7 +1,12 @@
 server:
-    port: 8080
+  address: 0.0.0.0
+  port: 8080
 
 spring:
+  redis:
+    host: 0.0.0.0
+    port: 16379
+    password: redis-secret-pw
   datasource:
     # type: org.apache.tomcat.jdbc.pool.Datasource
     url: jdbc:mysql://localhost:3306/MOMSITTER?autoReconnect=true&useUnicode=true&characterEncoding=utf-8
@@ -18,7 +23,7 @@ spring:
         connectionTestQuery : SELECT 1
   jpa:
     hibernate:
-      ddl-auto: create-drop 
+      ddl-auto: create 
       naming: 
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
         

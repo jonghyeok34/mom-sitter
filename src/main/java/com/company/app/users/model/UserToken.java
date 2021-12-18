@@ -1,39 +1,20 @@
 package com.company.app.users.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import com.company.app.common.model.DateTimeEntity;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Entity
-@Table(name="USER_TOKEN", schema="MOMSITTER")
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@EqualsAndHashCode(callSuper=true)
-// TODO redis로
-public class UserToken extends DateTimeEntity{
+@RedisHash("user_token")
+public class UserToken {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="ID")
-    private Long id;
-    
-    @Column(name="USER_ID", nullable=false)
-    private Long userId;
-
-    @Column(name="VALUE")
-    private String value;
+    private String userId;
+    private String token;
 }
