@@ -1,0 +1,16 @@
+version: "3.9"
+   
+services:
+  main_db:
+    container_name: mysql-db 
+    build: mysql/.
+    environment:
+      - MYSQL_DATABASE=MOMSITTER
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
+    ports:
+      - "3306:3306"
+  in_memory_db:
+    container_name: redis-db
+    build: redis/.
+    ports:
+      - "16379:6379"
