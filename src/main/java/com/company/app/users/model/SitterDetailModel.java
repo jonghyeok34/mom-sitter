@@ -46,7 +46,7 @@ public class SitterDetailModel extends DateTimeEntity {
     /**
      * 자기 소개
      */
-    @Column(name = "INTRODUCE")
+    @Column(name = "INTRODUCE", length=1000)
     private String introduce;
 
     @OneToOne(mappedBy="sitterDetail")

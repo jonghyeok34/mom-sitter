@@ -24,9 +24,8 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @RequiredArgsConstructor
 public class ControllerAuthenticationCheckAop {
-    private static final String [] authenticatedMethodUrls = {"GET /api/my_info"};
 
-
+    private static final String [] authenticatedMethodUrls = {"GET /api/my_info", "PATCH /api/my_info/user_type/parent", "PATCH /api/my_info/user_type/sitter"};
     private final JwtTokenServices jwtTokenServices;
 
     @Pointcut("execution(* com.company.app.**.**.*(..))")

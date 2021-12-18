@@ -23,7 +23,7 @@ spring:
         connectionTestQuery : SELECT 1
   jpa:
     hibernate:
-      # ddl-auto: create 
+      ddl-auto: update 
       naming: 
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
         

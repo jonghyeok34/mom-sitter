@@ -62,11 +62,11 @@ public class UserModel extends DateTimeEntity {
     private GenderTypes gender;
 
     @Convert(converter = UserTypesListConverter.class)
-    @Column(name = "USER_TYPE", nullable = false, length = 10)
+    @Column(name = "USER_TYPE", nullable = false, length = 30)
     private List<UserTypes> userType;
 
     // 돌봄 신청 내용
-    @Column(name = "REQUEST_INFO")
+    @Column(name = "REQUEST_INFO", length=1000)
     private String requestInfo;
 
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

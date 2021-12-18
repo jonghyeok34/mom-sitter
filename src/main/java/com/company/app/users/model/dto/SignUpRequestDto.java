@@ -35,8 +35,7 @@ public class SignUpRequestDto {
     @NotBlank(message = "아이디를 입력해주세요.")
     private String userId;
 
-
-    @Pattern(regexp=PasswordConstants.PASSWORD_CHECK_REGEX, message=PasswordConstants.PASSWORD_CHECK_MESSAGE)
+    @Pattern(regexp = PasswordConstants.PASSWORD_CHECK_REGEX, message = PasswordConstants.PASSWORD_CHECK_MESSAGE)
     @NotBlank(message = "비밀번호를 입력해주세요.")
     private String password;
 
