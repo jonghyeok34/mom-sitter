@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.company.app.common.model.DateTimeEntity;
@@ -30,12 +31,12 @@ public class SitterDetailModel extends DateTimeEntity {
     private Long sitterNo;
 
     /**
-     * 케어 가능한 최소연령 범위
+     * 케어 가능한 최소연령
      */
     @Column(name = "MIN_CARE_AGE")
     private Integer minCareAge;
     /**
-     * 케어 가능한 최대 연령 범위
+     * 케어 가능한 최대 연령
      */
     
     @Column(name = "MAX_CARE_AGE")

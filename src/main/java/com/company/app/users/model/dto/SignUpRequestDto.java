@@ -68,13 +68,13 @@ public class SignUpRequestDto {
     private String requestInfo;
 
     /**
-     * 시터회원이 케어 가능한 연령 범위
+     * 시터회원이 케어 가능한 최소 연령
      */
-    private Integer minCareAge;
+    private int minCareAge;
     /**
-     * 시터회원이 케어 가능한 연령 범위
+     * 시터회원이 케어 가능한 최대 연령
      */
-    private Integer maxCareAge;
+    private int maxCareAge;
 
     /**
      * 자기 소개
