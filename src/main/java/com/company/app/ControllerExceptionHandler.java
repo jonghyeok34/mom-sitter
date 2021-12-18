@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.company.app.common.exceptions.AlreadyAcceptedException;
-import com.company.app.common.exceptions.ExistingEmailException;
+import com.company.app.common.exceptions.ExistingUserException;
 import com.company.app.common.exceptions.FormValueRequiredExcpetion;
 import com.company.app.common.exceptions.UserAuthException;
 import com.company.app.common.exceptions.UserTokenException;
@@ -35,8 +35,8 @@ public class ControllerExceptionHandler {
     }
 
     @ResponseStatus(value = HttpStatus.CONFLICT)
-    @ExceptionHandler(value = { ExistingEmailException.class })
-    protected  Map<String, String> handleConflict(ExistingEmailException ex) {
+    @ExceptionHandler(value = { ExistingUserException.class })
+    protected  Map<String, String> handleConflict(ExistingUserException ex) {
         Map<String, String> errors = new HashMap<>();
         errors.put("message", ex.getMessage());
         

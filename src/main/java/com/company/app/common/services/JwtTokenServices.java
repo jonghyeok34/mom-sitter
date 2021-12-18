@@ -45,7 +45,8 @@ public class JwtTokenServices {
         if (jwtToken != null) {
             try {
                 String email = jwtTokenUtil.getUsernameFromToken(jwtToken);
-                user = userModelRepository.findByEmail(email).orElseThrow(()-> new UserTokenException(USER_TOKEN_EXCEPTION_MSG));
+                user = userModelRepository.findByEmail(email);
+                if(user == null) throw new UserTokenException(USER_TOKEN_EXCEPTION_MSG);
                 UserToken savedToken = userTokenRepository.findByUserId(user.getMemberNo()).orElseThrow(()-> new UserTokenException(USER_TOKEN_EXCEPTION_MSG));
                 if(!jwtToken.equals(savedToken.getValue())){
                     throw new UserTokenException(USER_TOKEN_EXCEPTION_MSG);

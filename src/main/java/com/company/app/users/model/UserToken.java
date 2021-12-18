@@ -24,6 +24,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 @EqualsAndHashCode(callSuper=true)
+// TODO redis로
 public class UserToken extends DateTimeEntity{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
