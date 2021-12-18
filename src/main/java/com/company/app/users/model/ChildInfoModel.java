@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 import com.company.app.common.codes.GenderTypes;
 import com.company.app.common.model.DateTimeEntity;
-import com.company.app.users.model.dto.KidInfoDto;
+import com.company.app.users.model.dto.ChildInfoRequestDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
@@ -50,7 +50,7 @@ public class ChildInfoModel extends DateTimeEntity {
     @JsonIgnore
     private UserModel parent;
 
-    public ChildInfoModel(KidInfoDto kidInfo){
+    public ChildInfoModel(ChildInfoRequestDto kidInfo){
         this.gender = GenderTypes.valueOf(kidInfo.getGender());
         this.birthdate = kidInfo.getBirthDate();
     }

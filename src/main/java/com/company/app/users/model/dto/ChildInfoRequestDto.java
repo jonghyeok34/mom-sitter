@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class KidInfoDto implements Serializable {
+public class ChildInfoRequestDto implements Serializable {
     
     @NotBlank(message = "gender을 입력해주세요.")
     @EnumTypeValid(target = GenderTypes.class, message = "올바른 gender를 입력해주세요")

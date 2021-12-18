@@ -60,7 +60,7 @@ public class SignUpRequestDto {
      * 아이정보 - 부모 : required
      */
     @Valid
-    private List<KidInfoDto> kidsInfo;
+    private List<ChildInfoRequestDto> kidsInfo;
     /**
      * 신청 내용 - 부모 : required
      */

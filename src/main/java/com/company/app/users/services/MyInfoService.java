@@ -15,6 +15,8 @@ import com.company.app.users.model.UserModel;
 import com.company.app.users.model.dto.AddParentTypeRequestDto;
 import com.company.app.users.model.dto.AddSitterTypeRequestDto;
 import com.company.app.users.model.dto.ChangePasswordRequestDto;
+import com.company.app.users.model.dto.ChildInfoDto;
+import com.company.app.users.model.dto.ChildInfoRequestDto;
 import com.company.app.users.model.dto.UpdateMyInfoRequestDto;
 import com.company.app.users.model.dto.UserInfoDto;
 import com.company.app.users.repository.UserModelRepository;
@@ -75,10 +77,28 @@ public class MyInfoService extends ApiBaseService {
         return new UserInfoDto(userModelRepository.save(user));
     }
 
+    // 비밀번호 변경
     public void changePassword(ChangePasswordRequestDto form) {
         UserModel user = getCurrentUser();
         user.setPassword(passwordEncoder.encode(form.getPassword()));
         userModelRepository.save(user);
+    }
+
+    // 아이 신규 등록
+    public List<ChildInfoDto> putChildInfo(ChildInfoRequestDto form){
+        UserModel user = getCurrentUser();
+        if(!user.getUserType().contains(UserTypes.PARENT)){
+            throw new UserTypeException("부모로 등록되지 않았습니다");
+        }
+        List<ChildInfoModel> childInfoList= user.getChildInfoList();
+        childInfoList.add(new ChildInfoModel(form));
+        user.setChildInfoList(
+            childInfoList
+        );
+        
+       return userModelRepository.save(user)
+                                 .getChildInfoList()
+                                 .stream().map(ChildInfoDto::new).collect(Collectors.toList());
     }
 
     // 4. 부모로도 활동하기

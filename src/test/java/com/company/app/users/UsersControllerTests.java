@@ -10,7 +10,7 @@ import java.util.List;
 import com.company.app.ControllerExceptionHandler;
 import com.company.app.common.codes.GenderTypes;
 import com.company.app.common.codes.UserTypes;
-import com.company.app.users.model.dto.KidInfoDto;
+import com.company.app.users.model.dto.ChildInfoRequestDto;
 import com.company.app.users.model.dto.SignUpRequestDto;
 import com.company.app.users.model.dto.SignUpResponseDto;
 import com.company.app.users.repository.UserModelRepository;
@@ -69,8 +69,8 @@ public class UsersControllerTests {
         form.setEmail("test@gmail.co.kr");
         form.setPassword("test11");
         form.setUserType(UserTypes.PARENT.name());
-        List<KidInfoDto> kidsInfo = Arrays.asList(
-            KidInfoDto.builder().birthDate(LocalDate.now()).gender(GenderTypes.FEMALE.name()).build()
+        List<ChildInfoRequestDto> kidsInfo = Arrays.asList(
+            ChildInfoRequestDto.builder().birthDate(LocalDate.now()).gender(GenderTypes.FEMALE.name()).build()
         );
         form.setKidsInfo(kidsInfo);
         return form;

@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import com.company.app.users.model.dto.AddParentTypeRequestDto;
 import com.company.app.users.model.dto.AddSitterTypeRequestDto;
 import com.company.app.users.model.dto.ChangePasswordRequestDto;
+import com.company.app.users.model.dto.ChildInfoRequestDto;
 import com.company.app.users.model.dto.UpdateMyInfoRequestDto;
 import com.company.app.users.services.MyInfoService;
 
@@ -13,6 +14,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,7 +48,11 @@ public class MyInfoController {
     }
 
     // TODO: 아이 정보 입력, 삭제
-
+    @PutMapping("/child")
+    public ResponseEntity<?> putChildInfo(@Valid @RequestBody ChildInfoRequestDto form) {
+        // myInfoService.changePassword(form);
+        return new ResponseEntity<>(myInfoService.putChildInfo(form), HttpStatus.OK);
+    }
 
     @PatchMapping("/user_type/parent")
     public ResponseEntity<?> addParentType(@Valid @RequestBody AddParentTypeRequestDto form) {

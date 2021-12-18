@@ -22,7 +22,7 @@ public class AddParentTypeRequestDto {
      */
     @Valid
     @NotNull(message="kidsInfo를 입력해야 합니다.")
-    private List<KidInfoDto> kidsInfo;
+    private List<ChildInfoRequestDto> kidsInfo;
     /**
      * 신청 내용 - 부모 : required
      */
