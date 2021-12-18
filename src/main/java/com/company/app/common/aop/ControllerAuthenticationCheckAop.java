@@ -25,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class ControllerAuthenticationCheckAop {
 
-    private static final String [] authenticatedMethodUrls = {"GET /api/my_info", "PATCH /api/my_info/user_type/parent", "PATCH /api/my_info/user_type/sitter"};
+    private static final String [] authenticatedMethodUrls = {"/api/my_info", "/api/my_info/**"};
     private final JwtTokenServices jwtTokenServices;
 
     @Pointcut("execution(* com.company.app.**.**.*(..))")
@@ -44,7 +44,7 @@ public class ControllerAuthenticationCheckAop {
 
         final AntPathMatcher pathMatcher = new AntPathMatcher();
 
-        boolean isAutheticatedMethodUrls = Arrays.stream(authenticatedMethodUrls).anyMatch((pattern) -> pathMatcher.match(pattern, methodUrl) );
+        boolean isAutheticatedMethodUrls = Arrays.stream(authenticatedMethodUrls).anyMatch((pattern) -> pathMatcher.match(pattern, methodUrl) || pathMatcher.match(pattern, requestUri) );
         if(isAutheticatedMethodUrls){
 
             final String token = jwtTokenServices.getTokenFromRequest(request);

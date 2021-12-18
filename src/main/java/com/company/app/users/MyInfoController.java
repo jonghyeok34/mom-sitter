@@ -4,6 +4,8 @@ import javax.validation.Valid;
 
 import com.company.app.users.model.dto.AddParentTypeRequestDto;
 import com.company.app.users.model.dto.AddSitterTypeRequestDto;
+import com.company.app.users.model.dto.ChangePasswordRequestDto;
+import com.company.app.users.model.dto.UpdateMyInfoRequestDto;
 import com.company.app.users.services.MyInfoService;
 
 import org.springframework.http.HttpStatus;
@@ -28,6 +30,22 @@ public class MyInfoController {
     public ResponseEntity<?> myInfo() {
         return new ResponseEntity<>(myInfoService.myInfo(), HttpStatus.OK);
     }
+
+    @PatchMapping("")
+    public ResponseEntity<?> updateMyInfo(@Valid @RequestBody UpdateMyInfoRequestDto form) {
+        myInfoService.validateUpdateMyInfo(form);
+        return new ResponseEntity<>(myInfoService.updateMyInfo(form), HttpStatus.OK);
+    }
+
+    // 비밀번호 변경
+    @PatchMapping("/password")
+    public ResponseEntity<?> changePassword(@Valid @RequestBody ChangePasswordRequestDto form) {
+        myInfoService.changePassword(form);
+        return new ResponseEntity<>("success", HttpStatus.OK);
+    }
+
+    // TODO: 아이 정보 입력, 삭제
+
 
     @PatchMapping("/user_type/parent")
     public ResponseEntity<?> addParentType(@Valid @RequestBody AddParentTypeRequestDto form) {

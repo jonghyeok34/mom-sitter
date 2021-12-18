@@ -47,7 +47,7 @@ public class UserInfoDto {
         this.gender = user.getGender();
         final List<UserTypes> userTypes = user.getUserType();
         if (userTypes != null) {
-
+            this.userType = userTypes;
             if (userTypes.contains(UserTypes.PARENT)) {
                 this.requestInfo = user.getRequestInfo();
                 if(user.getChildInfoList() != null && user.getChildInfoList().size() >0)

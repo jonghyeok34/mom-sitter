@@ -2,6 +2,8 @@ package com.company.app.common.services;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.company.app.users.model.UserModel;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -19,5 +21,10 @@ public class ApiBaseService {
         } else {
             return null;
         }
+    }
+    public UserModel getCurrentUser(){
+        HttpServletRequest request = getServletRequest();
+        UserModel user = (UserModel) request.getAttribute("userInfo");
+        return user;
     }
 }

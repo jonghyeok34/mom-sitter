@@ -14,9 +14,12 @@ import com.company.app.users.model.SitterDetailModel;
 import com.company.app.users.model.UserModel;
 import com.company.app.users.model.dto.AddParentTypeRequestDto;
 import com.company.app.users.model.dto.AddSitterTypeRequestDto;
+import com.company.app.users.model.dto.ChangePasswordRequestDto;
+import com.company.app.users.model.dto.UpdateMyInfoRequestDto;
 import com.company.app.users.model.dto.UserInfoDto;
 import com.company.app.users.repository.UserModelRepository;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -26,9 +29,7 @@ import lombok.RequiredArgsConstructor;
 public class MyInfoService extends ApiBaseService {
 
     private final UserModelRepository userModelRepository;
-    public void validateAddParentType(AddParentTypeRequestDto form) {
-
-    }
+    private final PasswordEncoder passwordEncoder;
 
     public void validateAddSitterType(AddSitterTypeRequestDto form) {
 
@@ -43,56 +44,88 @@ public class MyInfoService extends ApiBaseService {
 
     }
 
+    public void validateUpdateMyInfo(UpdateMyInfoRequestDto form) {
+
+        // 시터회원일 경우 케어 가능한 연령 범위, 자기소개 확인
+        if (form.getMinCareAge() < 0) {
+            throw new FormValueRequiredExcpetion("minCareAge는 0보다 크게 입력해주셔야 합니다.");
+        }
+        if (form.getMaxCareAge() <= form.getMinCareAge()) {
+            throw new FormValueRequiredExcpetion("maxCareAge는 minCareAge보다 커야합니다.");
+        }
+
+    }
+
     // 3. 내 정보 업데이트
-    
+    public UserInfoDto updateMyInfo(UpdateMyInfoRequestDto form) {
+        UserModel user = getCurrentUser();
+        // user.setBirthdate(birthdate);
+        user.setName(form.getName());
+        List<UserTypes> userTypes = user.getUserType();
+        if (userTypes.contains(UserTypes.PARENT)) {
+            user.setRequestInfo(form.getRequestInfo());
+        }
+        if (userTypes.contains(UserTypes.SITTER)) {
+            SitterDetailModel sitterDetail = user.getSitterDetail();
+            sitterDetail.setMinCareAge(form.getMinCareAge());
+            sitterDetail.setMaxCareAge(form.getMaxCareAge());
+            sitterDetail.setIntroduce(form.getIntroduce());
+            user.setSitterDetail(sitterDetail);
+        }
+        return new UserInfoDto(userModelRepository.save(user));
+    }
+
+    public void changePassword(ChangePasswordRequestDto form) {
+        UserModel user = getCurrentUser();
+        user.setPassword(passwordEncoder.encode(form.getPassword()));
+        userModelRepository.save(user);
+    }
 
     // 4. 부모로도 활동하기
     public UserInfoDto addParentType(AddParentTypeRequestDto form) {
-        
-        HttpServletRequest request = getServletRequest();
-        UserModel user = (UserModel) request.getAttribute("userInfo");
+        UserModel user = getCurrentUser();
         List<UserTypes> userTypes = user.getUserType();
-        if (userTypes.contains(UserTypes.PARENT)) throw new UserTypeException("이미 부모로 활동중입니다.");
+        if (userTypes.contains(UserTypes.PARENT))
+            throw new UserTypeException("이미 부모로 활동중입니다.");
         // 부모로
         userTypes.add(UserTypes.PARENT);
-        
+
         user.setChildInfoList(
-            form.getKidsInfo().stream().map(ChildInfoModel::new).collect(Collectors.toList())
-        );
+                form.getKidsInfo().stream().map(ChildInfoModel::new).collect(Collectors.toList()));
         user.setUserType(
-            userTypes
-        );
+                userTypes);
         user.setRequestInfo(form.getRequestInfo());
         userModelRepository.save(user);
-        
+
         return new UserInfoDto(user);
     }
+
     // 5. 시터로도 활동하기
     public UserInfoDto addSitterType(AddSitterTypeRequestDto form) {
-        HttpServletRequest request = getServletRequest();
-        UserModel user = (UserModel) request.getAttribute("userInfo");
+        UserModel user = getCurrentUser();
         List<UserTypes> userTypes = user.getUserType();
-        if (userTypes.contains(UserTypes.SITTER)) throw new UserTypeException("이미 시터로 활동중입니다.");
+        if (userTypes.contains(UserTypes.SITTER))
+            throw new UserTypeException("이미 시터로 활동중입니다.");
         // 시터로
         userTypes.add(UserTypes.SITTER);
         user.setUserType(
-            userTypes
-        );
-        
+                userTypes);
+
         user.setSitterDetail(
-            SitterDetailModel.builder()
-                             .introduce(form.getIntroduce())
-                             .maxCareAge(form.getMaxCareAge())
-                             .minCareAge(form.getMinCareAge())
-                             .build()
-        );
+                SitterDetailModel.builder()
+                        .introduce(form.getIntroduce())
+                        .maxCareAge(form.getMaxCareAge())
+                        .minCareAge(form.getMinCareAge())
+                        .build());
         userModelRepository.save(user);
-        
+
         return new UserInfoDto(user);
     }
+
     // 6. 내정보 보기
     public UserInfoDto myInfo() {
         HttpServletRequest request = getServletRequest();
         return new UserInfoDto((UserModel) request.getAttribute("userInfo"));
     }
+
 }
