@@ -6,10 +6,7 @@ import java.util.stream.Collectors;
 
 import com.company.app.common.codes.GenderTypes;
 import com.company.app.common.codes.UserTypes;
-import com.company.app.users.model.ChildInfoModel;
-import com.company.app.users.model.SitterDetailModel;
 import com.company.app.users.model.UserModel;
-import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import com.company.app.common.codes.GenderTypes;
 import com.company.app.common.model.DateTimeEntity;
 import com.company.app.users.model.dto.KidInfoDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -46,6 +47,7 @@ public class ChildInfoModel extends DateTimeEntity {
 
     @ManyToOne
     @JoinColumn(name = "MEMBER_NO")
+    @JsonIgnore
     private UserModel parent;
 
     public ChildInfoModel(KidInfoDto kidInfo){

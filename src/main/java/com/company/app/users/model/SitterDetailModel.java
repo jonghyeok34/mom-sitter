@@ -9,6 +9,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.company.app.common.model.DateTimeEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -49,5 +50,6 @@ public class SitterDetailModel extends DateTimeEntity {
     private String introduce;
 
     @OneToOne(mappedBy="sitterDetail")
+    @JsonIgnore
     private UserModel parent;
 }
