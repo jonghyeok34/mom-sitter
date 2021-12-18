@@ -6,11 +6,14 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -30,7 +33,37 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
+        super.configure(web);
         web.ignoring().antMatchers("/**");
+        // web.ignoring().antMatchers("/users/sign-up", "/users/sign-in");
     }
 
+    
+    // @Override
+    // protected void configure(HttpSecurity http) throws Exception {
+    //     // cors 전체 열기 - 테스트용
+    //     CorsConfiguration configuration = new CorsConfiguration();
+    //     configuration.addAllowedOriginPattern(CorsConfiguration.ALL);
+    //     configuration.addAllowedMethod(CorsConfiguration.ALL);
+    //     configuration.addAllowedHeader(CorsConfiguration.ALL);
+    //     configuration.setAllowCredentials(true);
+
+    //     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    //     source.registerCorsConfiguration("/**", configuration);
+
+    //     http.httpBasic().disable()
+    //         .csrf().disable()
+    //         .cors().configurationSource(source)
+    //         .and().headers().frameOptions();// 
+
+    //     http.authorizeRequests()
+    //             .antMatchers("/api/**").permitAll();
+
+    //     // http.authorizeRequests()
+    //     //     .and()
+    //     //         .exceptionHandling().accessDeniedHandler(customAccessDeniedHandler())
+    //     //     .and()
+    //     //         .addFilterBefore(jwtAuthenticationProcessingFilter(), UsernamePasswordAuthenticationFilter.class);
+
+    // }
 }

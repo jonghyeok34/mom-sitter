@@ -45,11 +45,18 @@ public class JwtTokenServices {
         if (jwtToken != null) {
             try {
                 String userId = jwtTokenUtil.getUsernameFromToken(jwtToken);
-                UserToken savedToken = userTokenRepository.findByUserId(userId);
-                if(savedToken == null) throw new UserTokenException(USER_TOKEN_EXCEPTION_MSG);
+                UserToken savedToken = userTokenRepository.findById(userId).orElseThrow(()-> new UserTokenException(USER_TOKEN_EXCEPTION_MSG+"1"));
+                // if(savedToken == null) {
+                //     System.out.println("here1");
+                //     throw new UserTokenException(USER_TOKEN_EXCEPTION_MSG);
+                // }
                 if(!jwtToken.equals(savedToken.getToken())){
+                    System.out.println("here2");
                     throw new UserTokenException(USER_TOKEN_EXCEPTION_MSG);
                 }
+                user = userModelRepository.findByUserId(userId);
+                return user;
+                
             } catch (IllegalArgumentException | MalformedJwtException e) {
                 System.out.println("Unable to get JWT Token");
                 throw new UserTokenException("WRONG ERROR");
