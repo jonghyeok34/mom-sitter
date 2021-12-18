@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @RequiredArgsConstructor
 public class ControllerAuthenticationCheckAop {
-    private static final String [] authenticatedMethodUrls = {"GET /api/users/my_info"};
+    private static final String [] authenticatedMethodUrls = {"GET /api/my_info"};
 
 
     private final JwtTokenServices jwtTokenServices;

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 
 import com.company.app.common.codes.GenderTypes;
@@ -21,23 +20,17 @@ import com.company.app.users.model.dto.LoginRequestDto;
 import com.company.app.users.model.dto.LoginResponseDto;
 import com.company.app.users.model.dto.SignUpRequestDto;
 import com.company.app.users.model.dto.SignUpResponseDto;
-import com.company.app.users.model.dto.UserInfoDto;
 import com.company.app.users.repository.UserModelRepository;
 import com.company.app.users.repository.UserTokenRepository;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
-@Slf4j
 public class UsersServiceImp implements UsersService {
 
     private final UserModelRepository userModelRepository;
@@ -138,23 +131,6 @@ public class UsersServiceImp implements UsersService {
 
     }
 
-    @Override
-    public UserInfoDto myInfo() {
-        HttpServletRequest request = getServletRequest();
-        log.info("is null :{}", request.getAttribute("userInfo") ==null); 
-        return new UserInfoDto((UserModel) request.getAttribute("userInfo"));
-
-    }
-
-    public HttpServletRequest getServletRequest() {
-        RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
-
-        if (requestAttributes instanceof ServletRequestAttributes) {
-            HttpServletRequest request = ((ServletRequestAttributes) requestAttributes).getRequest();
-            return request;
-        } else {
-            return null;
-        }
-    }
+    
 
 }
