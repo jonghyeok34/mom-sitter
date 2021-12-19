@@ -1,7 +1,11 @@
 spring:
+  redis:
+    host: in_memory_db
+    port: 6379
+    password: redis-secret-pw  
   datasource:
     # type: org.apache.tomcat.jdbc.pool.Datasource
-    url: jdbc:mysql://db:3306/MOMSITTER?autoReconnect=true&useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://main_db:3306/MOMSITTER?autoReconnect=true&useUnicode=true&characterEncoding=utf-8
     username: root
     password: my-secret-pw
     driver-class-name: com.mysql.cj.jdbc.Driver

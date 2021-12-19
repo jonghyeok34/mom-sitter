@@ -23,6 +23,6 @@ public abstract class DateTimeEntity implements Serializable {
     private LocalDateTime createdAt;
 
     @LastModifiedDate
-    @Column(name = "UPDATED_AT")
+    @Column(name = "UPDATED_AT", nullable = false)
     private LocalDateTime updatedAt;
 }

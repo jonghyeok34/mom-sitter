@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.company.app.common.codes.GenderTypes;
 import com.company.app.common.codes.UserTypes;
 import com.company.app.common.exceptions.FormValueRequiredExcpetion;
+import com.company.app.common.exceptions.NotValidChildException;
 import com.company.app.common.exceptions.UserTypeException;
 import com.company.app.common.services.ApiBaseService;
 import com.company.app.users.model.ChildInfoModel;
@@ -105,7 +106,10 @@ public class MyInfoService extends ApiBaseService {
     // 아이 업데이트
     public List<ChildInfoDto> updateChildInfo(UpdateChildInfoRequestDto form) {
         UserModel user = getCurrentUser();
-        user.getChildInfoList().stream()
+        List<ChildInfoModel> childInfoList = user.getChildInfoList();
+        childInfoList.stream().filter(item -> item.getChildNo().equals(form.getChildNo()))
+                              .findFirst().orElseThrow(()-> new NotValidChildException("올바르지 않은 아이입니다."));
+        childInfoList.stream()
                 .forEach(item -> {
                     if (item.getChildNo().equals(form.getChildNo())) {
                         item.setBirthdate(form.getBirthDate());
