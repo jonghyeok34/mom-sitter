@@ -1,0 +1,1982 @@
+{
+	"info": {
+		"_postman_id": "adbc556c-978f-435f-aa7e-6dd68c0e6c14",
+		"name": "mom_sitter",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. 회원가입 - 부모",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"테스터1\",\r\n    \"userId\": \"test3\",\r\n    \"password\":\"123123Qq!!\",\r\n    \"gender\": \"MALE\",\r\n    \"userType\": \"PARENT\",\r\n    \"birthDate\": \"19930101\",\r\n    \"email\": \"test3@gmail.com\",\r\n    \"kidsInfo\":[\r\n        {\"gender\": \"MALE\", \"birthDate\": \"20200101\"},\r\n        {\"gender\": \"FEMALE\", \"birthDate\": \"20180101\"}\r\n    ],\r\n    \"requestInfo\": \"신청내용입니다\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/sign-up",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"sign-up"
+					]
+				},
+				"description": "# body 설명\n\n| **key** | **설명** | **비고** |\n| --- | --- | --- |\n| name | (필수)이름 |  |\n| userId | (필수)아이디 |  |\n| password | (필수)비밀번호 | 8~20자리  <br>소문자, 대문자, 특수문자 1개씩 필수 |\n| gender | (필수)성별 | MALE, FEMALE |\n| userType | (필수)유저타입 | PARENT, SITTER |\n| birthDate | (필수) 생년월일 | yyyyMMdd |\n| email | (필수) 이메일 |  |\n| kidsInfo | (부모 필수) 아이 정보 |  |\n| requestInfo | (부모 필수)신청내용 |  |\n| minCareAge | (시터필수) 보육가능 최소 연령 |  |\n| maxCareAge | (시터필수) 보육가능 최대 연령 |  |\n| introduce | (시터필수) 자기 소개 |  |\n\n## kidsInfo\n\n| **key** | **설명** | **범위** |\n| --- | --- | --- |\n| gender | (필수)성별 | MALE, FEMALE |\n| birthDate | (필수) 생년월일 | yyyyMMdd |"
+			},
+			"response": [
+				{
+					"name": "1. 회원가입 -부모(성공)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"테스터1\",\r\n    \"userId\": \"test3\",\r\n    \"password\":\"123123Qq!!\",\r\n    \"gender\": \"MALE\",\r\n    \"userType\": \"PARENT\",\r\n    \"birthDate\": \"19930101\",\r\n    \"email\": \"test3@gmail.com\",\r\n    \"kidsInfo\":[\r\n        {\"gender\": \"MALE\", \"birthDate\": \"20200101\"},\r\n        {\"gender\": \"FEMALE\", \"birthDate\": \"20180101\"}\r\n    ],\r\n    \"requestInfo\": \"신청내용입니다\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/sign-up",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"sign-up"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 17:22:02 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"memberNo\": 2,\n    \"createdAt\": \"2021-12-19T02:22:02.3276916\",\n    \"updatedAt\": \"2021-12-19T02:22:02.3276916\"\n}"
+				},
+				{
+					"name": "1. 회원가입 -부모(실패)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"테스터1\",\r\n    \"userId\": \"test3\",\r\n    \"password\":\"123123Qq!!\",\r\n    \"gender\": \"MALE\",\r\n    \"userType\": \"PARENT\",\r\n    \"birthDate\": \"19930101\",\r\n    \"email\": \"test3@gmail.com\",\r\n    \"kidsInfo\":[\r\n        {\"gender\": \"MALE\", \"birthDate\": \"20200101\"},\r\n        {\"gender\": \"FEMALE\", \"birthDate\": \"20180101\"}\r\n    ],\r\n    \"requestInfo\": \"신청내용입니다\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/sign-up",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"sign-up"
+							]
+						}
+					},
+					"status": "Conflict",
+					"code": 409,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 17:22:29 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"이미 가입된 유저입니다\"\n}"
+				}
+			]
+		},
+		{
+			"name": "1. 회원가입 - 시터",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"테스터2\",\r\n    \"userId\": \"test4\",\r\n    \"password\":\"123123Qq!!\",\r\n    \"gender\": \"MALE\",\r\n    \"userType\": \"SITTER\",\r\n    \"birthDate\": \"19930101\",\r\n    \"email\": \"test4@gmail.com\",\r\n    \"minCareAge\": 3,\r\n    \"maxCareAge\": 5,\r\n    \"introduce\": \"안녕하세요 \\n 시터입니다.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/sign-up",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"sign-up"
+					]
+				},
+				"description": "# body 설명\n\n| **key** | **설명** | **비고** |\n| --- | --- | --- |\n| name | (필수)이름 |  |\n| userId | (필수)아이디 |  |\n| password | (필수)비밀번호 | 8~20자리  <br>소문자, 대문자, 특수문자 1개씩 필수 |\n| gender | (필수)성별 | MALE, FEMALE |\n| userType | (필수)유저타입 | PARENT, SITTER |\n| birthDate | (필수) 생년월일 | yyyyMMdd |\n| email | (필수) 이메일 |  |\n| kidsInfo | (부모 필수) 아이 정보 |  |\n| requestInfo | (부모 필수)신청내용 |  |\n| minCareAge | (시터필수) 보육가능 최소 연령 |  |\n| maxCareAge | (시터필수) 보육가능 최대 연령 |  |\n| introduce | (시터필수) 자기 소개 |  |\n\n## kidsInfo\n\n| **key** | **설명** | **범위** |\n| --- | --- | --- |\n| gender | (필수)성별 | MALE, FEMALE |\n| birthDate | (필수) 생년월일 | yyyyMMdd |"
+			},
+			"response": [
+				{
+					"name": "1. 회원가입 - 시터(실패)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"테스터2\",\r\n    \"userId\": \"test2\",\r\n    \"password\":\"123123Qq!!\",\r\n    \"gender\": \"MALE\",\r\n    \"userType\": \"SITTER\",\r\n    \"birthDate\": \"19930101\",\r\n    \"email\": \"test@gmail.com\",\r\n    \"minCareAge\": 3,\r\n    \"maxCareAge\": 5,\r\n    \"introduce\": \"안녕하세요 \\n 시터입니다.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/sign-up",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"sign-up"
+							]
+						}
+					},
+					"status": "Conflict",
+					"code": 409,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 12:21:10 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"이미 가입된 유저입니다\"\n}"
+				},
+				{
+					"name": "1. 회원가입 - 시터(성공)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"테스터2\",\r\n    \"userId\": \"test4\",\r\n    \"password\":\"123123Qq!!\",\r\n    \"gender\": \"MALE\",\r\n    \"userType\": \"SITTER\",\r\n    \"birthDate\": \"19930101\",\r\n    \"email\": \"test4@gmail.com\",\r\n    \"minCareAge\": 3,\r\n    \"maxCareAge\": 5,\r\n    \"introduce\": \"안녕하세요 \\n 시터입니다.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/sign-up",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"sign-up"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 17:23:24 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"memberNo\": 3,\n    \"createdAt\": \"2021-12-19T02:23:24.3799835\",\n    \"updatedAt\": \"2021-12-19T02:23:24.3799835\"\n}"
+				}
+			]
+		},
+		{
+			"name": "2. 로그인",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"const jsonData = pm.response.json();\r",
+							"if(typeof jsonData.accessToken != null){\r",
+							"    postman.setEnvironmentVariable(\"token\",jsonData.accessToken);\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": \"test1\",\r\n    \"password\":\"123123Qq!!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/sign-in",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"sign-in"
+					]
+				},
+				"description": "# body 설명\n\n| **key** | **설명** | **비고** |\n| --- | --- | --- |\n| userId | (필수)아이디 |  |\n| password | (필수)비밀번호 | 8~20자리  <br>소문자, 대문자, 특수문자 1개씩 필수 |"
+			},
+			"response": [
+				{
+					"name": "2. 로그인(성공)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"test1\",\r\n    \"password\":\"123123Qq!!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/sign-in",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"sign-in"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 16:06:29 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE2Mzk4NjE1ODksImlhdCI6MTYzOTg0MzU4OSwianRpIjoidGVzdDEifQ.34X10CJ9RmxqbIa15HZvqa-aVgFm6y6m4nOiRWatv38ljZIjgzH9uu_J36hmGxWqaM-X5fzafxAruSeIcRPjow\"\n}"
+				},
+				{
+					"name": "2. 로그인(실패) - 비밀번호",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"test1\",\r\n    \"password\":\"123123Qq!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/sign-in",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"sign-in"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 17:24:31 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"비밀번호를 확인해주세요\"\n}"
+				},
+				{
+					"name": "2. 로그인(실패) - 아이디",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"test1x\",\r\n    \"password\":\"123123Qq!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/sign-in",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"sign-in"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 17:25:16 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"아이디를 확인해주세요\"\n}"
+				}
+			]
+		},
+		{
+			"name": "3. 내 정보 업데이트",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"테스터\",\r\n    \"birthDate\": \"19930102\",\r\n    \"minCareAge\": 3,\r\n    \"maxCareAge\": 5,\r\n    \"requestInfo\": \"신청내용입니다\",\r\n    \"introduce\": \"안녕하세요 \\n 시터입니다.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/my_info",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"my_info"
+					]
+				},
+				"description": "# body 설명\n\n| **key** | **설명** | **비고** |\n| --- | --- | --- |\n| name | (필수)이름 |  |\n| birthDate | (필수) 생년월일 | yyyyMMdd |\n| requestInfo | (부모)신청내용 |  |\n| minCareAge | (시터) 보육가능 최소 연령 |  |\n| maxCareAge | (시터) 보육가능 최대 연령 |  |\n| introduce | (시터) 자기 소개 |  |"
+			},
+			"response": [
+				{
+					"name": "3. 내 정보 업데이트(성공)",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"테스터\",\r\n    \"birthDate\": \"1993010\",\r\n    \"minCareAge\": 3,\r\n    \"maxCareAge\": 6,\r\n    \"requestInfo\": \"신청내용입니다\",\r\n    \"introduce\": \"안녕하세요 \\n 시터입니다.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/my_info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"my_info"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 17:27:20 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"memberNo\": 1,\n    \"userId\": \"test1\",\n    \"name\": \"테스터\",\n    \"birthdate\": \"1993-01-01\",\n    \"email\": \"test1@gmail.com\",\n    \"gender\": \"MALE\",\n    \"userType\": [\n        \"PARENT\"\n    ],\n    \"requestInfo\": \"신청내용입니다\",\n    \"childInfoList\": [\n        {\n            \"childNo\": 1,\n            \"gender\": \"MALE\",\n            \"birthdate\": \"2020-01-01\",\n            \"age\": 2\n        },\n        {\n            \"childNo\": 2,\n            \"gender\": \"FEMALE\",\n            \"birthdate\": \"2018-01-01\",\n            \"age\": 4\n        }\n    ],\n    \"sitterDetail\": null\n}"
+				},
+				{
+					"name": "3. 내 정보 업데이트(실패) - 날짜",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"테스터\",\r\n    \"birthDate\": \"199301021\",\r\n    \"minCareAge\": 3,\r\n    \"maxCareAge\": 6,\r\n    \"requestInfo\": \"신청내용입니다\",\r\n    \"introduce\": \"안녕하세요 \\n 시터입니다.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/my_info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"my_info"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 17:28:21 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"날짜는 yyyyMMdd의 형태로 입력해야 합니다\"\n}"
+				},
+				{
+					"name": "3. 내 정보 업데이트(실패) - 연령 범위",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"테스터\",\r\n    \"birthDate\": \"19930102\",\r\n    \"minCareAge\": 3,\r\n    \"maxCareAge\": 1,\r\n    \"requestInfo\": \"신청내용입니다\",\r\n    \"introduce\": \"안녕하세요 \\n 시터입니다.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/my_info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"my_info"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 17:29:25 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"maxCareAge는 minCareAge보다 커야합니다.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "3-1. 비밀번호 변경",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"password\": \"123123Qq!!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/my_info/password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"my_info",
+						"password"
+					]
+				},
+				"description": "# body 설명\n\n| **key** | **설명** | **비고** |\n| --- | --- | --- |\n| password | (필수)비밀번호 | 8~20자리  <br>소문자, 대문자, 특수문자 1개씩 필수 |"
+			},
+			"response": [
+				{
+					"name": "3-1. 비밀번호 변경 (성공)",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"123123Qq!!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/my_info/password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"my_info",
+								"password"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "7"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 15:50:53 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "success"
+				}
+			]
+		},
+		{
+			"name": "3-2. 아이 신규 등록",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"gender\": \"FEMALE\",\r\n    \"birthDate\": \"20180103\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/my_info/child",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"my_info",
+						"child"
+					]
+				},
+				"description": "*   아이 추가"
+			},
+			"response": [
+				{
+					"name": "3-2. 아이 신규 등록(성공)",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"gender\": \"FEMALE\",\r\n    \"birthDate\": \"20180103\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/my_info/child",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"my_info",
+								"child"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 17:30:14 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"childNo\": 1,\n        \"gender\": \"MALE\",\n        \"birthdate\": \"2020-01-01\",\n        \"age\": 2\n    },\n    {\n        \"childNo\": 2,\n        \"gender\": \"FEMALE\",\n        \"birthdate\": \"2018-01-01\",\n        \"age\": 4\n    },\n    {\n        \"childNo\": 5,\n        \"gender\": \"FEMALE\",\n        \"birthdate\": \"2018-01-03\",\n        \"age\": 4\n    }\n]"
+				},
+				{
+					"name": "3-2. 아이 신규 등록(실패) - 날짜",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"gender\": \"FEMALE\",\r\n    \"birthDate\": \"201801031\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/my_info/child",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"my_info",
+								"child"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 17:30:33 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"날짜는 yyyyMMdd의 형태로 입력해야 합니다\"\n}"
+				},
+				{
+					"name": "3-2. 아이 신규 등록(실패) - 성별",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"gender\": \"FEMALE1\",\r\n    \"birthDate\": \"20180103\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/my_info/child",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"my_info",
+								"child"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 17:30:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"올바른 gender를 입력해주세요\"\n}"
+				}
+			]
+		},
+		{
+			"name": "3-3. 아이 수정",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"childNo\": 5,\r\n    \"gender\": \"MALE\",\r\n    \"birthDate\": \"20190104\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/my_info/child",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"my_info",
+						"child"
+					]
+				},
+				"description": "# body 설명\n\n| **key** | **설명** | **비고** |\n| --- | --- | --- |\n| childNo | (필수)아이 번호 |  |\n| gender | (필수)성별 | MALE, FEMALE |\n| birthDate | (필수) 생년월일 | yyyyMMdd |"
+			},
+			"response": [
+				{
+					"name": "3-3. 아이 수정 (실패) - 등록한 아이 아님",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"childNo\": 9,\r\n    \"gender\": \"MALE\",\r\n    \"birthDate\": \"20190104\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/my_info/child",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"my_info",
+								"child"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 17:39:12 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"올바르지 않은 아이입니다.\"\n}"
+				},
+				{
+					"name": "3-3. 아이 수정(실패) -성별",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"childNo\": 9,\r\n    \"gender\": \"MALE1\",\r\n    \"birthDate\": \"20190104\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/my_info/child",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"my_info",
+								"child"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 17:40:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"올바른 gender를 입력해주세요\"\n}"
+				},
+				{
+					"name": "3-3. 아이 수정(실패) -날짜",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"childNo\": 9,\r\n    \"gender\": \"MALE\",\r\n    \"birthDate\": \"201901041\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/my_info/child",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"my_info",
+								"child"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 17:40:33 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"날짜는 yyyyMMdd의 형태로 입력해야 합니다\"\n}"
+				},
+				{
+					"name": "3-3. 아이 수정(성공)",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"childNo\": 5,\r\n    \"gender\": \"MALE\",\r\n    \"birthDate\": \"20190104\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/my_info/child",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"my_info",
+								"child"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 17:40:53 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"childNo\": 1,\n        \"gender\": \"MALE\",\n        \"birthdate\": \"2020-01-01\",\n        \"age\": 2\n    },\n    {\n        \"childNo\": 2,\n        \"gender\": \"FEMALE\",\n        \"birthdate\": \"2018-01-01\",\n        \"age\": 4\n    },\n    {\n        \"childNo\": 5,\n        \"gender\": \"MALE\",\n        \"birthdate\": \"2019-01-04\",\n        \"age\": 3\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "4. 부모로도 활동하기",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"kidsInfo\":[\r\n        {\"gender\": \"MALE\", \"birthDate\": \"20200101\"},\r\n        {\"gender\": \"FEMALE\", \"birthDate\": \"20180101\"}\r\n    ],\r\n    \"requestInfo\": \"신청내용입니다\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/my_info/user_type/parent",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"my_info",
+						"user_type",
+						"parent"
+					]
+				},
+				"description": "추가적인 정보를 제출 받아서 시터 혹은 부모로도 서비스를 이용할 수 있도록, 지원\n\n# body 설명\n\n| **key** | **설명** | **비고** |\n| --- | --- | --- |\n| kidsInfo | (필수) 아이 정보 |  |\n| requestInfo | (필수)신청내용 |  |\n\n## kidsInfo\n\n| **key** | **설명** | **범위** |\n| --- | --- | --- |\n| gender | (필수)성별 | MALE, FEMALE |\n| birthDate | (필수) 생년월일 | yyyyMMdd |"
+			},
+			"response": [
+				{
+					"name": "4. 부모로도 활동하기 (실패) - 이미",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"kidsInfo\":[\r\n        {\"gender\": \"MALE\", \"birthDate\": \"20200101\"},\r\n        {\"gender\": \"FEMALE\", \"birthDate\": \"20180101\"}\r\n    ],\r\n    \"requestInfo\": \"신청내용입니다\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/my_info/user_type/parent",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"my_info",
+								"user_type",
+								"parent"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 17:41:13 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"이미 부모로 활동중입니다.\"\n}"
+				},
+				{
+					"name": "4. 부모로도 활동하기 (성공)",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"kidsInfo\":[\r\n        {\"gender\": \"MALE\", \"birthDate\": \"20200101\"},\r\n        {\"gender\": \"FEMALE\", \"birthDate\": \"20180101\"}\r\n    ],\r\n    \"requestInfo\": \"신청내용입니다\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/my_info/user_type/parent",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"my_info",
+								"user_type",
+								"parent"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 17:41:13 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"memberNo\": 1,\n    \"userId\": \"test1\",\n    \"name\": \"테스터\",\n    \"birthdate\": \"1993-01-01\",\n    \"email\": \"test1@gmail.com\",\n    \"gender\": \"MALE\",\n    \"userType\": [\n        \"PARENT\",\n        \"SITTER\"\n    ],\n    \"requestInfo\": \"신청내용입니다\",\n    \"childInfoList\": [\n        {\n            \"childNo\": 1,\n            \"gender\": \"MALE\",\n            \"birthdate\": \"2020-01-01\",\n            \"age\": 2\n        },\n        {\n            \"childNo\": 2,\n            \"gender\": \"FEMALE\",\n            \"birthdate\": \"2018-01-01\",\n            \"age\": 4\n        },\n        {\n            \"childNo\": 5,\n            \"gender\": \"MALE\",\n            \"birthdate\": \"2019-01-04\",\n            \"age\": 3\n        }\n    ],\n    \"sitterDetail\": {\n        \"minCareAge\": 3,\n        \"maxCareAge\": 5,\n        \"introduce\": \"안녕하세요 \\n 시터입니다.\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "5. 시터로도 활동하기",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"minCareAge\": 3,\r\n    \"maxCareAge\": 5,\r\n    \"introduce\": \"안녕하세요 \\n 시터입니다.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/my_info/user_type/sitter",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"my_info",
+						"user_type",
+						"sitter"
+					]
+				},
+				"description": "*   시터 타입 추가시 입력 required\n    \n# body 설명\n\n| **key** | **설명** | **비고** |\n| --- | --- | --- |\n| minCareAge | (필수) 보육가능 최소 연령 |  |\n| maxCareAge | (필수) 보육가능 최대 연령 |  |\n| introduce |  자기 소개 |  |"
+			},
+			"response": [
+				{
+					"name": "5. 시터로도 활동하기(성공)",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"minCareAge\": 3,\r\n    \"maxCareAge\": 5,\r\n    \"introduce\": \"안녕하세요 \\n 시터입니다.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/my_info/user_type/sitter",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"my_info",
+								"user_type",
+								"sitter"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 17:41:39 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"memberNo\": 1,\n    \"userId\": \"test1\",\n    \"name\": \"테스터\",\n    \"birthdate\": \"1993-01-01\",\n    \"email\": \"test1@gmail.com\",\n    \"gender\": \"MALE\",\n    \"userType\": [\n        \"PARENT\",\n        \"SITTER\"\n    ],\n    \"requestInfo\": \"신청내용입니다\",\n    \"childInfoList\": [\n        {\n            \"childNo\": 1,\n            \"gender\": \"MALE\",\n            \"birthdate\": \"2020-01-01\",\n            \"age\": 2\n        },\n        {\n            \"childNo\": 2,\n            \"gender\": \"FEMALE\",\n            \"birthdate\": \"2018-01-01\",\n            \"age\": 4\n        },\n        {\n            \"childNo\": 5,\n            \"gender\": \"MALE\",\n            \"birthdate\": \"2019-01-04\",\n            \"age\": 3\n        }\n    ],\n    \"sitterDetail\": {\n        \"minCareAge\": 3,\n        \"maxCareAge\": 5,\n        \"introduce\": \"안녕하세요 \\n 시터입니다.\"\n    }\n}"
+				},
+				{
+					"name": "5. 시터로도 활동하기 (실패) -이미 등록",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"minCareAge\": 3,\r\n    \"maxCareAge\": 5,\r\n    \"introduce\": \"안녕하세요 \\n 시터입니다.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/my_info/user_type/sitter",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"my_info",
+								"user_type",
+								"sitter"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 17:42:46 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"이미 시터로 활동중입니다.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "6. 내정보 보기",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/my_info",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"my_info"
+					]
+				},
+				"description": "1.  공통\n    \n\n*   회원번호/이름/생년월일/성별/아이디/이메일\n    \n\n1.  시터회원\n    \n\n*   케어 가능한 최소 연령/자기소개 정보\n    \n\n2\\. 부모 회원\n\n*   아이나이/신청 내용 정보\n    \n\n3\\. both : 시터회원 + 부모회원"
+			},
+			"response": [
+				{
+					"name": "6. 내정보 보기 (성공)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/my_info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"my_info"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 17:43:05 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"memberNo\": 1,\n    \"userId\": \"test1\",\n    \"name\": \"테스터\",\n    \"birthdate\": \"1993-01-01\",\n    \"email\": \"test1@gmail.com\",\n    \"gender\": \"MALE\",\n    \"userType\": [\n        \"PARENT\",\n        \"SITTER\"\n    ],\n    \"requestInfo\": \"신청내용입니다\",\n    \"childInfoList\": [\n        {\n            \"childNo\": 1,\n            \"gender\": \"MALE\",\n            \"birthdate\": \"2020-01-01\",\n            \"age\": 2\n        },\n        {\n            \"childNo\": 2,\n            \"gender\": \"FEMALE\",\n            \"birthdate\": \"2018-01-01\",\n            \"age\": 4\n        },\n        {\n            \"childNo\": 5,\n            \"gender\": \"MALE\",\n            \"birthdate\": \"2019-01-04\",\n            \"age\": 3\n        }\n    ],\n    \"sitterDetail\": {\n        \"minCareAge\": 3,\n        \"maxCareAge\": 5,\n        \"introduce\": \"안녕하세요 \\n 시터입니다.\"\n    }\n}"
+				}
+			]
+		}
+	]
+}

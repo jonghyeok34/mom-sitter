@@ -36,7 +36,8 @@ dependencies {
 }
 
 test {
-	useJUnitPlatform()
+	exclude "*/*"
+	// useJUnitPlatform()
 }
 
 bootJar {
