@@ -26,7 +26,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 @ExtendWith(MockitoExtension.class)
 public class UsersControllerTests {
 
- 
     @InjectMocks
     private UsersController usersController;
 
@@ -35,37 +34,33 @@ public class UsersControllerTests {
 
     @Mock
     private UserModelRepository userModelRepository;
-    
-    
-    
+
     private ObjectWriter ow;
     private MockMvc mockMvc;
+
     @BeforeEach
-    public void init(){
+    public void init() {
         // mock mvc & exception handler
         mockMvc = MockMvcBuilders.standaloneSetup(usersController)
-            .setControllerAdvice(new ControllerExceptionHandler())
-            .build();
+                .setControllerAdvice(new ControllerExceptionHandler())
+                .build();
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
         ow = mapper.writer().withDefaultPrettyPrinter();
     }
-    SignUpRequestDto parentSignUpForm(){
-        
+
+    SignUpRequestDto parentSignUpForm() {
+
         SignUpRequestDto form = new SignUpRequestDto();
         form.setName("부모이름");
-        form.setUserId("tester"); 
+        form.setUserId("tester");
         form.setEmail("test@gmail.co.kr");
         form.setPassword("test11");
         form.setUserType(UserTypes.PARENT.name());
         List<ChildInfoRequestDto> kidsInfo = Arrays.asList(
-            ChildInfoRequestDto.builder().birthDate(LocalDate.now()).gender(GenderTypes.FEMALE.name()).build()
-        );
+                ChildInfoRequestDto.builder().birthDate(LocalDate.now()).gender(GenderTypes.FEMALE.name()).build());
         form.setKidsInfo(kidsInfo);
         return form;
     }
-
-    
-
 
 }
