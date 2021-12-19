@@ -33,11 +33,10 @@ redis - port 16379
 web - port 8080
 ```
 # 3. spec 문서
-[spec문서 다운로드(html, open api, postman)](documents/specs)
-[spec문서 (html) ](documents/specs/index.html)
+[spec문서 다운로드(html, open api, postman)](documents/specs)  
 # 4. DB정보
 
-[DDL 다운로드](db/mysql/ddl.sql)
+[DDL 다운로드](db/mysql/ddl.sql)  
 ![images](documents/images/company-db.PNG)
 
 ## USER : 유저 정보

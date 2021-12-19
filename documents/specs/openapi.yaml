@@ -9,7 +9,7 @@ paths:
     post:
       tags:
         - General
-      summary: 1. 회원가입 - 시터
+      summary: 회원가입 - 시터
       description: |-
         # body 설명
 
@@ -56,11 +56,30 @@ paths:
         '201':
           description: Created
           headers:
-            
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
             Content-Type:
               schema:
                 type: string
                 example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Sat, 18 Dec 2021 17:23:24 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
           content:
             application/json:
               schema:
@@ -76,6 +95,22 @@ paths:
               schema:
                 type: string
                 example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Sat, 18 Dec 2021 12:21:10 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
           content:
             application/json:
               schema:
@@ -86,7 +121,7 @@ paths:
     post:
       tags:
         - General
-      summary: 2. 로그인
+      summary: 로그인
       description: |-
         # body 설명
 
@@ -100,7 +135,7 @@ paths:
             schema:
               type: object
               example:
-                userId: test1
+                userId: test3
                 password: 123123Qq!!
       responses:
         '200':
@@ -110,6 +145,22 @@ paths:
               schema:
                 type: string
                 example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Sat, 18 Dec 2021 16:06:29 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
           content:
             application/json:
               schema:
@@ -120,10 +171,22 @@ paths:
         '400':
           description: Bad Request
           headers:
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
             Content-Type:
               schema:
                 type: string
                 example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Sat, 18 Dec 2021 17:24:31 GMT
             Connection:
               schema:
                 type: string
@@ -134,18 +197,18 @@ paths:
                 type: object
               examples:
                 example-0:
-                  summary: 2. 로그인(실패) - 비밀번호
+                  summary: 로그인(실패) - 비밀번호
                   value:
                     message: 비밀번호를 확인해주세요
                 example-1:
-                  summary: 2. 로그인(실패) - 아이디
+                  summary: 로그인(실패) - 아이디
                   value:
                     message: 아이디를 확인해주세요
   /api/my_info:
     patch:
       tags:
         - General
-      summary: 3. 내 정보 업데이트
+      summary: 내 정보 업데이트
       description: |-
         # body 설명
 
@@ -181,11 +244,30 @@ paths:
         '200':
           description: OK
           headers:
-            
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
             Content-Type:
               schema:
                 type: string
                 example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Sat, 18 Dec 2021 17:27:20 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
           content:
             application/json:
               schema:
@@ -213,11 +295,22 @@ paths:
         '400':
           description: Bad Request
           headers:
-            
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
             Content-Type:
               schema:
                 type: string
                 example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Sat, 18 Dec 2021 17:28:21 GMT
             Connection:
               schema:
                 type: string
@@ -228,36 +321,23 @@ paths:
                 type: object
               examples:
                 example-0:
-                  summary: 3. 내 정보 업데이트(실패) - 날짜
+                  summary: 내 정보 업데이트(실패) - 날짜
                   value:
                     message: 날짜는 yyyyMMdd의 형태로 입력해야 합니다
                 example-1:
-                  summary: 3. 내 정보 업데이트(실패) - 연령 범위
+                  summary: 내 정보 업데이트(실패) - 연령 범위
                   value:
                     message: maxCareAge는 minCareAge보다 커야합니다.
     get:
       tags:
         - General
-      summary: 6. 내정보 보기
+      summary: 내정보 보기
       description: |-
-        1.  공통
-            
+        0\. 공통 :회원번호/이름/생년월일/성별/아이디/이메일
 
-        *   회원번호/이름/생년월일/성별/아이디/이메일
-            
+        1\. 시터회원 : 케어 가능한 최소 연령/자기소개 정보
 
-        1.  시터회원
-            
-
-        *   케어 가능한 최소 연령/자기소개 정보
-            
-
-        2\. 부모 회원
-
-        *   아이나이/신청 내용 정보
-            
-
-        3\. both : 시터회원 + 부모회원
+        2\. 부모 회원 : 아이나이/신청 내용 정보
       parameters:
         - name: Authorization
           in: header
@@ -273,11 +353,30 @@ paths:
         '200':
           description: OK
           headers:
-            
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
             Content-Type:
               schema:
                 type: string
                 example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Sat, 18 Dec 2021 17:43:05 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
           content:
             application/json:
               schema:
@@ -316,7 +415,7 @@ paths:
     patch:
       tags:
         - General
-      summary: 3-1. 비밀번호 변경
+      summary: 비밀번호 변경
       description: |-
         # body 설명
 
@@ -348,6 +447,18 @@ paths:
               schema:
                 type: integer
                 example: '7'
+            Date:
+              schema:
+                type: string
+                example: Sat, 18 Dec 2021 15:50:53 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
           content:
             text/plain:
               schema:
@@ -357,7 +468,7 @@ paths:
     put:
       tags:
         - General
-      summary: 3-2. 아이 신규 등록
+      summary: 아이 신규 등록
       description: '*   아이 추가'
       requestBody:
         content:
@@ -377,11 +488,30 @@ paths:
         '200':
           description: OK
           headers:
-            
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
             Content-Type:
               schema:
                 type: string
                 example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Sat, 18 Dec 2021 17:30:14 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
           content:
             application/json:
               schema:
@@ -402,11 +532,22 @@ paths:
         '400':
           description: Bad Request
           headers:
-            
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
             Content-Type:
               schema:
                 type: string
                 example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Sat, 18 Dec 2021 17:30:33 GMT
             Connection:
               schema:
                 type: string
@@ -417,17 +558,17 @@ paths:
                 type: object
               examples:
                 example-0:
-                  summary: 3-2. 아이 신규 등록(실패) - 날짜
+                  summary: 아이 신규 등록(실패) - 날짜
                   value:
                     message: 날짜는 yyyyMMdd의 형태로 입력해야 합니다
                 example-1:
-                  summary: 3-2. 아이 신규 등록(실패) - 성별
+                  summary: 아이 신규 등록(실패) - 성별
                   value:
                     message: 올바른 gender를 입력해주세요
     patch:
       tags:
         - General
-      summary: 3-3. 아이 수정
+      summary: 아이 수정
       description: |-
         # body 설명
 
@@ -442,7 +583,7 @@ paths:
             schema:
               type: object
               example:
-                childNo: 5
+                childNo: 6
                 gender: MALE
                 birthDate: '20190104'
       parameters:
@@ -455,11 +596,30 @@ paths:
         '200':
           description: OK
           headers:
-            
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
             Content-Type:
               schema:
                 type: string
                 example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Sat, 18 Dec 2021 17:40:53 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
           content:
             application/json:
               schema:
@@ -480,11 +640,22 @@ paths:
         '400':
           description: Bad Request
           headers:
-            
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
             Content-Type:
               schema:
                 type: string
                 example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Sat, 18 Dec 2021 17:40:18 GMT
             Connection:
               schema:
                 type: string
@@ -495,21 +666,40 @@ paths:
                 type: object
               examples:
                 example-0:
-                  summary: 3-3. 아이 수정(실패) -성별
+                  summary: 아이 수정(실패) -성별
                   value:
                     message: 올바른 gender를 입력해주세요
                 example-1:
-                  summary: 3-3. 아이 수정(실패) -날짜
+                  summary: 아이 수정(실패) -날짜
                   value:
                     message: 날짜는 yyyyMMdd의 형태로 입력해야 합니다
         '401':
           description: Unauthorized
           headers:
-            
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
             Content-Type:
               schema:
                 type: string
                 example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Sat, 18 Dec 2021 17:39:12 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
           content:
             application/json:
               schema:
@@ -520,7 +710,7 @@ paths:
     patch:
       tags:
         - General
-      summary: 4. 부모로도 활동하기
+      summary: 부모로도 활동하기
       description: |-
         추가적인 정보를 제출 받아서 시터 혹은 부모로도 서비스를 이용할 수 있도록, 지원
 
@@ -559,11 +749,30 @@ paths:
         '200':
           description: OK
           headers:
-            
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
             Content-Type:
               schema:
                 type: string
                 example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Sat, 18 Dec 2021 17:41:13 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
           content:
             application/json:
               schema:
@@ -601,11 +810,30 @@ paths:
         '403':
           description: Forbidden
           headers:
-            
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
             Content-Type:
               schema:
                 type: string
                 example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Sat, 18 Dec 2021 17:41:13 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
           content:
             application/json:
               schema:
@@ -616,7 +844,7 @@ paths:
     patch:
       tags:
         - General
-      summary: 5. 시터로도 활동하기
+      summary: 시터로도 활동하기
       description: |-
         *   시터 타입 추가시 입력 required
             
@@ -648,11 +876,30 @@ paths:
         '200':
           description: OK
           headers:
-            
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
             Content-Type:
               schema:
                 type: string
                 example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Sat, 18 Dec 2021 17:41:39 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
           content:
             application/json:
               schema:
@@ -690,11 +937,30 @@ paths:
         '403':
           description: Forbidden
           headers:
-            
+            Vary:
+              schema:
+                type: string
+                example: Access-Control-Request-Headers
             Content-Type:
               schema:
                 type: string
                 example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Sat, 18 Dec 2021 17:42:46 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
           content:
             application/json:
               schema:
